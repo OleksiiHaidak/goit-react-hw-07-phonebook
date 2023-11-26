@@ -2,12 +2,10 @@ import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 export const fetchContacts = createAsyncThunk(
-  'contacts/getAll',
+  'contacts/fetchAll',
   async (_, thunkApi) => {
     try {
-      const { data } = await axios.get(
-        `https://655d2d7a9f1e1093c59915fa.mockapi.io/contacts`
-      );
+      const { data } = await axios.get(`https://655d2d7a9f1e1093c59915fa.mockapi.io/contacts`);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -31,9 +29,7 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, thunkApi) => {
     try {
-      const { data } = await axios.delete(
-    `https://655d2d7a9f1e1093c59915fa.mockapi.io/contacts/${contactId}`
-      );
+      const { data } = await axios.delete(`https://655d2d7a9f1e1093c59915fa.mockapi.io/contacts/${contactId}`);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
